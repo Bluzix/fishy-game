@@ -12,6 +12,7 @@ body,html{
 canvas{
     touch-action: none;
     display:none;
+    cursor: none;
 }
 #start_screen{
     background-color: #000;

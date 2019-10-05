@@ -10,7 +10,9 @@ class Game {
         this.colors = [0, 0, 0];
         this.shifts = [0, 0, 0];
         this.fishArray = [];
-        this.fishArray.push(new Fish(10,10));
+        this.width = canvas.width;
+        this.height = canvas.height;
+        this.player = new Player(this.width/2,this.height/2);
     }
 
     draw(ctx){
@@ -21,11 +23,26 @@ class Game {
       for(let i = 0; i<this.fishArray.length; i++){
         this.fishArray[i].draw(ctx);
       }
+      this.player.draw(ctx);
     }
   
     update(ctx, mouse, canvas){
+      this.player.x = mouse.x;
+      this.player.y = mouse.y;
+
+      if(this.fishArray.length < canvas.width/50){
+        var chosenValue = Math.random() <= 0.5 ? true : false;
+        if(chosenValue){//lets this for the right
+          this.fishArray.push(new Fish(getRandomBetweenTwoValues(0, 100), getRandomBetweenTwoValues(0, this.height), getRandomBetweenTwoValues(10,100), getRandomBetweenTwoValues(1,2)));
+        }else{
+          this.fishArray.push(new Fish(getRandomBetweenTwoValues(this.width-110, this.width-10), getRandomBetweenTwoValues(0, this.height), getRandomBetweenTwoValues(10,100), getRandomBetweenTwoValues(-1,-2)));
+        }
+      }
       for(let i = 0; i < this.fishArray.length; i++){
         this.fishArray[i].update();
+        if(this.fishArray[i].x < 0 || this.fishArray[i].x > this.width){
+          this.fishArray.splice(i,1);
+        }
       }
   
       for (let index = 0; index < 3; index ++) {
