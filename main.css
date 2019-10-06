@@ -18,7 +18,13 @@ canvas{
     background-color: #000;
     height: 80%;
     position: relative;
-    
+
+  }
+/* for the mobile viewport */
+#mobileViewport{
+    border: 1px blue solid;
+    border-radius: 10px;
+    opacity: 0.5;
   }
 .start-wrapper{
     margin: 0;
@@ -27,7 +33,7 @@ canvas{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     text-align: center;
-    width: 100%;    
+    width: 100%;
 }
 .game-title{
     font-size: 3rem;
@@ -38,8 +44,7 @@ canvas{
     font-size: 3rem;
 }
 @keyframes blinker{
-    50% { 
+    50% {
         opacity: 0;
     }
 }
-        
